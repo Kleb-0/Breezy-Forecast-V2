@@ -1,16 +1,14 @@
 import ForecastDay from "./forecastDay";
 
-export default function Forecast() {
+export default function Forecast({ weatherData }) {
+  const { forecastDays } = weatherData;
+  let maxDays = 8;
+
   return (
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-fit mx-auto mt-8 sm:mb-0 mb-8 px-2.5">
-        <ForecastDay />
-        <ForecastDay />
-        <ForecastDay />
-        <ForecastDay />
-        <ForecastDay />
-        <ForecastDay />
-        <ForecastDay />
-        <ForecastDay />
-      </div>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-fit mx-auto mt-8 sm:mb-0 mb-8 px-2.5">
+      {forecastDays?.slice(0, maxDays).map((day) => (
+        <ForecastDay key={day.datetime} dayData={day} />
+      ))}
+    </div>
   );
 }
