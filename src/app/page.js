@@ -4,23 +4,28 @@ import CurrentWeather from "@/components/currentWeather";
 import ErrorScreen from "@/components/ErrorScreen";
 import Forecast from "@/components/forecast";
 import LoadingScreen from "@/components/LoadingScreen";
-import useFilterCurrentData from "@/hooks/useFilterCurrentData";
+import useFilterWeatherData from "@/hooks/useFilterWeatherData";
 
 export default function Home() {
-  const currentWeatherData = useFilterCurrentData();
+  const weatherData = useFilterWeatherData();
 
-  if (currentWeatherData.isLoading) {
+  if (weatherData.isLoading) {
     return <LoadingScreen />;
   }
 
-  if (currentWeatherData.error) {
-    return <ErrorScreen />;
+  if (weatherData.error) {
+    return <ErrorScreen />
   }
 
   return (
-    <div>
-      <CurrentWeather currentWeatherData={currentWeatherData} />
-      <Forecast />
+    <div className="pb-8">
+      <CurrentWeather weatherData={weatherData} />
+      <Forecast weatherData={weatherData} />
+      <footer className="w-full text-center mt-8">
+        <p>
+          Made by <strong>Calebe Hillesheim Lamb</strong>
+        </p>
+      </footer>
     </div>
   );
 }
