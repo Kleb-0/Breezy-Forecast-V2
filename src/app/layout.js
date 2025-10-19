@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       >
         <WeatherProvider>
           <NavBar />
-          {children}
+          <main className="mt-3">{children}</main>
         </WeatherProvider>
       </body>
     </html>
