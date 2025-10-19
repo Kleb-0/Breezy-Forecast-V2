@@ -4,17 +4,24 @@ import CurrentWeather from "@/components/currentWeather";
 import ErrorScreen from "@/components/ErrorScreen";
 import Forecast from "@/components/forecast";
 import LoadingScreen from "@/components/LoadingScreen";
+import Welcome from "@/components/welcome";
+import { useCity } from "@/context/WeatherProvider";
 import useFilterWeatherData from "@/hooks/useFilterWeatherData";
 
 export default function Home() {
+  const { city } = useCity();
   const weatherData = useFilterWeatherData();
 
   if (weatherData.isLoading) {
     return <LoadingScreen />;
   }
 
-  if (weatherData.error) {
-    return <ErrorScreen />
+  if (weatherData.error && city.length > 0) {
+    return <ErrorScreen />;
+  }
+
+  if (city.length == 0) {
+    return <Welcome />;
   }
 
   return (
@@ -23,7 +30,7 @@ export default function Home() {
       <Forecast weatherData={weatherData} />
       <footer className="w-full text-center mt-8">
         <p>
-          Made by <strong>Calebe Hillesheim Lamb</strong>
+          Developed by <strong>Calebe Hillesheim Lamb</strong>
         </p>
       </footer>
     </div>
