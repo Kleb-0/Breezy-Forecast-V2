@@ -1,9 +1,9 @@
 "use client";
 
 import CurrentWeather from "@/components/currentWeather";
-import ErrorScreen from "@/components/ErrorScreen";
+import ErrorScreen from "@/components/fallbacks/ErrorScreen";
 import Forecast from "@/components/forecast";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "@/components/fallbacks/LoadingScreen";
 import Welcome from "@/components/welcome";
 import { useCity } from "@/context/WeatherProvider";
 import useFilterWeatherData from "@/hooks/useFilterWeatherData";
